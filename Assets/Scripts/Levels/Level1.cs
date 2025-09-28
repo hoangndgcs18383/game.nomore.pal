@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using SAGE.Framework.Core.Addressable;
 using SAGE.Framework.UI;
@@ -9,9 +10,9 @@ namespace NoMorePals
     public interface ILevel
     {
         UniTask StartLevel(MagnetBlock magnetA, MagnetBlock magnetB);
-        void EndLevel(int currentTurn, int totalTurns = 0);
         int GetLevelTurns();
         void SetQuestComplete(string questID);
+        bool AreAllQuestsComplete();
     }
 
     public class Level1 : MonoBehaviour, ILevel
@@ -37,6 +38,11 @@ namespace NoMorePals
             }
         }
 
+        public bool AreAllQuestsComplete()
+        {
+            return _questTargets.All(q => q.Value);
+        }
+
         public async UniTask StartLevel(MagnetBlock magnetA, MagnetBlock magnetB)
         {
             Debug.Log("Level 1 Started");
@@ -47,10 +53,6 @@ namespace NoMorePals
             };
             SlotUIData uiData = new SlotUIData { slots = slots };
             await UIManager.Instance.ShowAndLoadScreenAsync<UIGameplay>(BaseScreenAddress.UIGAMEPLAY, uiData);
-        }
-
-        public void EndLevel(int currentTurn, int totalTurns = 0)
-        {
         }
     }
 }

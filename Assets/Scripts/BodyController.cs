@@ -4,16 +4,16 @@ namespace NoMorePals
 {
     public class BodyController : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
+        [SerializeField] private Transform rootHand;
+        [SerializeField] private Transform targetHand;
+        [SerializeField] private bool isReverse;
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-        
+            Vector3 dir = targetHand.position - rootHand.position;
+            if (isReverse) dir = -dir;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            rootHand.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 }

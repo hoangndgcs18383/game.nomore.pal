@@ -10,6 +10,8 @@ namespace SAGE.Framework.Core.Addressable
             {
 				case "UIGameplay":
 					return "b3c2db6c51c485c409215bc899e79767";
+				case "UIComplete":
+					return "f7c32933797febf44846d5c90cb370e6";
 
             }
             return null;
@@ -25,6 +27,7 @@ namespace SAGE.Framework.Core.Addressable
         }
         
 		public static string UIGAMEPLAY = "UIGameplay";
+		public static string UICOMPLETE = "UIComplete";
 
     }
 }

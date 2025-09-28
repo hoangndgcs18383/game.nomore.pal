@@ -17,6 +17,7 @@ namespace NoMorePals
     {
         public string id;
         public Sprite sprite;
+        public QuestTrigger questTrigger;
     }
 
     public class UIGameplay : BaseScreen
@@ -28,6 +29,17 @@ namespace NoMorePals
 
         private List<Slot> _slots = new List<Slot>();
         private SlotUIData _uiData;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            playButton.onClick.AddListener(OnPlayButtonClicked);
+        }
+
+        public void OnPlayButtonClicked()
+        {
+            GameManager.Instance.ValidateGameplay();
+        }
 
         public override void SetData(IUIData data = null)
         {
@@ -70,8 +82,9 @@ namespace NoMorePals
                     _slots.Add(slot);
                 }
 
-                slot.SetSprite(GetSpriteByID(_uiData.slots[i].id));
                 slot.SetData(_uiData.slots[i]);
+                slot.SetSprite(GetSpriteByID(_uiData.slots[i].id));
+                slot.SetQuestTrigger(GetQuestTriggerByID(_uiData.slots[i].id));
             }
         }
 
@@ -79,6 +92,12 @@ namespace NoMorePals
         {
             Sprite sprite = spritesData.FirstOrDefault(s => s.id == id).sprite;
             return sprite;
+        }
+
+        public QuestTrigger GetQuestTriggerByID(string id)
+        {
+            QuestTrigger questTrigger = spritesData.FirstOrDefault(s => s.id == id).questTrigger;
+            return questTrigger;
         }
     }
 }

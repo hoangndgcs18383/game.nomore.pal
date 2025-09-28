@@ -100,7 +100,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: HandL
+    path: HandRoot/HandL
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -161,7 +161,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: HandR
+    path: HandRoot/HandR
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -318,7 +318,7 @@ AnimationClip:
     - time: 0.8333333
       value: {fileID: -1181099594657430498, guid: 159bc859551c12e4ca4b96263eebfcf1, type: 3}
     attribute: m_Sprite
-    path: HandL
+    path: HandRoot/HandL
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -345,7 +345,7 @@ AnimationClip:
     - time: 0.8333333
       value: {fileID: -342617714816224687, guid: 609518a63caa3e648b419e61edce5fdd, type: 3}
     attribute: m_Sprite
-    path: HandR
+    path: HandRoot/HandR
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -357,7 +357,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 294203841
+      path: 1607919207
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -366,7 +366,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3951430818
+      path: 2782518020
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -402,7 +402,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 294203841
+      path: 1607919207
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -411,7 +411,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3951430818
+      path: 2782518020
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -763,7 +763,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: HandL
+    path: HandRoot/HandL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -829,7 +829,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: HandL
+    path: HandRoot/HandL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -895,7 +895,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: HandL
+    path: HandRoot/HandL
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -961,7 +961,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: HandR
+    path: HandRoot/HandR
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1027,7 +1027,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: HandR
+    path: HandRoot/HandR
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1093,7 +1093,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: HandR
+    path: HandRoot/HandR
     classID: 4
     script: {fileID: 0}
     flags: 0

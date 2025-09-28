@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MagnetConfig
   m_EditorClassIdentifier: 
   magnetRange: 100
-  magnetSpeedDefault: 10
+  magnetSpeedDefault: 20
   magnetSpeedMax: 20
-  stopOffset: 1.2
+  stopOffset: 1.5

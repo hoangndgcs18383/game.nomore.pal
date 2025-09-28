@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace NoMorePals
 {
-    public class InputManager : AdvanceSingleton<InputManager>
+    public class InputManager : PresSingleton<InputManager>
     {
         [SerializeField] private LayerMask questLayer;
 
@@ -88,11 +88,12 @@ namespace NoMorePals
                     RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
                     if (hit.collider != null)
                     {
-                        MagnetBlock block = hit.collider.GetComponentInChildren<MagnetBlock>();
+                        MagnetBlock block = hit.collider.GetComponentInParent<MagnetBlock>();
                         if (block != null)
                         {
                             currentSelectedBlock = block;
                             _draggedObject = currentSelectedBlock.transform;
+                            currentSelectedBlock.Selected();
                             _isDragging = true;
                         }
                     }

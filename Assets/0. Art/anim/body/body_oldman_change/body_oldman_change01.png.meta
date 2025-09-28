@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      body_oldman_change01_0: 831683828053110043
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

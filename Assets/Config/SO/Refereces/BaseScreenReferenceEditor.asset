@@ -27,4 +27,15 @@ MonoBehaviour:
       m_SubObjectGUID: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - key: UIComplete
+    labels:
+    - BaseScreen
+    isAddressable: 1
+    asset: {fileID: 4540144013881955379, guid: f7c32933797febf44846d5c90cb370e6, type: 3}
+    reference:
+      m_AssetGUID: f7c32933797febf44846d5c90cb370e6
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   Folder: 

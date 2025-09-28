@@ -12,6 +12,7 @@ namespace NoMorePals
         {
             base.Enter(block);
             GameManager.Instance.SetQuestComplete(Constants.GoToPcScene);
+            block.EnterLevel1();
         }
     }
 }

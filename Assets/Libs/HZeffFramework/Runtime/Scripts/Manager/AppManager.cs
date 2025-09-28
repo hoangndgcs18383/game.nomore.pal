@@ -1,3 +1,6 @@
+using NoMorePals;
+using UnityEngine.SceneManagement;
+
 namespace SAGE.Framework.Core
 {
     using Cysharp.Threading.Tasks;
@@ -60,6 +63,7 @@ namespace SAGE.Framework.Core
             //await UIManager.Instance.ShowAndLoadScreenAsync<UIMainMenu>(BaseScreenAddress.UIMAINMENU);
             IsLoading = false;
             await UniTask.WaitForSeconds(0.1f);
+            SceneManager.LoadScene("Level1");
             //SDKHandler.Instance.ShowBannerAdAsync();
         }
 
