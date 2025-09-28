@@ -40,21 +40,24 @@ namespace NoMorePals
                     if (hit.collider != null)
                     {
                         QuestTrigger trigger = hit.collider.GetComponent<QuestTrigger>();
-                        Debug.Log("Hit: " + hit.collider.name);
                         if (trigger != null && trigger.Triggered())
                         {
                             trigger.Enter(currentSelectedBlock);
-                            GameManager.Instance.ChangeStateGame(StateGame.Win);
+                            GameManager.Instance.CompleteTurn();
+                            //GameManager.Instance.ChangeStateGame(StateGame.Win);
                         }
                         else
                         {
                             currentSelectedBlock.TryMagnetToContact();
+                            GameManager.Instance.CompleteTurn();
                         }
                     }
                     else
                     {
                         currentSelectedBlock.TryMagnetToContact();
+                        GameManager.Instance.CompleteTurn();
                     }
+                    
                 }
 
                 currentSelectedBlock = null;
@@ -70,6 +73,7 @@ namespace NoMorePals
                 Vector3 worldPoint = ray.origin;
                 _draggedObject.position =
                     new Vector3(worldPoint.x, worldPoint.y, currentSelectedBlock.transform.position.z);
+                
             }
         }
 

@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using SAGE.Framework.Core.Addressable;
-using SAGE.Framework.UI;
 using UnityEngine;
 
 namespace NoMorePals
@@ -16,20 +12,39 @@ namespace NoMorePals
 
     public class GameManager : PresSingleton<GameManager>
     {
+        public event Action<int, int> OnTurnComplete;
+
         [SerializeField] private MagnetBlock magnetA;
         [SerializeField] private MagnetBlock magnetB;
         [SerializeField] private StateGame _stateGame = StateGame.Playing;
-        [SerializeField] ILevel ILevel;
 
-        private bool _isTurnComplete = false;
+        private ILevel ILevel;
+        private int _turns = 0;
 
         public bool IsPlaying() => _stateGame == StateGame.Playing;
 
         private async void Start()
         {
             ILevel = GetComponent<ILevel>();
+            _turns = 0;
             await ILevel.StartLevel(magnetA, magnetB);
+            CompleteTurn();
             _stateGame = StateGame.Playing;
+        }
+        
+        public void SetQuestComplete(string questID)
+        {
+            ILevel.SetQuestComplete(questID);
+        }
+
+        public void CompleteTurn()
+        {
+            OnTurnComplete?.Invoke(_turns++, ILevel.GetLevelTurns());
+            
+            if (_turns > ILevel.GetLevelTurns())
+            {
+                ILevel.EndLevel(_turns, ILevel.GetLevelTurns());
+            }
         }
 
         public void ChangeStateGame(StateGame newState)

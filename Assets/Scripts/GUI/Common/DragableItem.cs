@@ -50,6 +50,7 @@ namespace NoMorePals
         {
             _canvasGroup.blocksRaycasts = true;
             _canvasGroup.alpha = 0f;
+            GameManager.Instance.CompleteTurn();
             _dragIconDrag.Active();
             /*if (_originalParent != null)
             {

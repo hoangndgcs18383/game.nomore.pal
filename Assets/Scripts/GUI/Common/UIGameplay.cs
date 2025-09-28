@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SAGE.Framework.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NoMorePals
 {
@@ -23,6 +24,7 @@ namespace NoMorePals
         [SerializeField] private SpriteData[] spritesData;
         [SerializeField] private Slot slotPrefab;
         [SerializeField] private Transform slotsParent;
+        [SerializeField] private Button playButton;
 
         private List<Slot> _slots = new List<Slot>();
         private SlotUIData _uiData;

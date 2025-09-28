@@ -29,7 +29,7 @@ namespace NoMorePals
             _triggered = true;
         }
 
-        public virtual void Enter(MagnetBlock block)
+        public virtual void Enter(MagnetBlock block) 
         {
             block.transform.position = enterPoint.position;
         }

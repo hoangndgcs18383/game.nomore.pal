@@ -53,7 +53,7 @@ namespace SAGE.Framework.Core.UI
             {
                 AnimatorController controller =
                     AssetDatabase.LoadAssetAtPath<AnimatorController>(
-                        "Assets/QuickFramework/0. Animations/Button/Button.controller");
+                        "Assets/Libs/HZeffFramework/Runtime/0. Animations/Button/Button.controller");
                 if (controller == null) return;
                 Animator animator = gameObject.GetOrAddComponent<Animator>();
                 animator.runtimeAnimatorController = controller;
