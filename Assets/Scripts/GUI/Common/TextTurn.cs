@@ -21,7 +21,7 @@ namespace NoMorePals
         {
             string tag = currentTurn < totalTurns ? "<color=red>" : "<color=green>";
             
-            turnText.text = $"Turn {tag}{currentTurn}</color>/{totalTurns}";
+            turnText.text = $"Action: {tag}{currentTurn}</color>/{totalTurns}";
         }
     }
 }

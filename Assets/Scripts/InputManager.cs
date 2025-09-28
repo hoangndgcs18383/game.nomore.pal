@@ -88,7 +88,7 @@ namespace NoMorePals
                     RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
                     if (hit.collider != null)
                     {
-                        MagnetBlock block = hit.collider.GetComponent<MagnetBlock>();
+                        MagnetBlock block = hit.collider.GetComponentInChildren<MagnetBlock>();
                         if (block != null)
                         {
                             currentSelectedBlock = block;
