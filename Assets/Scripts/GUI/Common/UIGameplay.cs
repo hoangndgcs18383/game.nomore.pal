@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using SAGE.Framework.UI;
 using UnityEngine;
 
@@ -9,8 +11,16 @@ namespace NoMorePals
         public List<SlotData> slots;
     }
 
+    [Serializable]
+    public struct SpriteData
+    {
+        public string id;
+        public Sprite sprite;
+    }
+
     public class UIGameplay : BaseScreen
     {
+        [SerializeField] private SpriteData[] spritesData;
         [SerializeField] private Slot slotPrefab;
         [SerializeField] private Transform slotsParent;
 
@@ -58,8 +68,15 @@ namespace NoMorePals
                     _slots.Add(slot);
                 }
 
+                slot.SetSprite(GetSpriteByID(_uiData.slots[i].id));
                 slot.SetData(_uiData.slots[i]);
             }
+        }
+
+        public Sprite GetSpriteByID(string id)
+        {
+            Sprite sprite = spritesData.FirstOrDefault(s => s.id == id).sprite;
+            return sprite;
         }
     }
 }

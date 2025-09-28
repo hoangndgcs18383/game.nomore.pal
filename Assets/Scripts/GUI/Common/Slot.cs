@@ -1,15 +1,19 @@
 using SAGE.Framework.Extensions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NoMorePals
 {
     public struct SlotData
     {
         public string id;
+        public Sprite sprite;
     }
 
     public class Slot : DraggableItem
     {
+        [SerializeField] private Image _icon;
+
         private SlotData _data;
         private bool _activeQuest = false;
 
@@ -19,11 +23,19 @@ namespace NoMorePals
             gameObject.name = data.id;
         }
 
+        public void SetSprite(Sprite sprite)
+        {
+            _icon.sprite = sprite;
+            _icon.SetNativeSize();
+            RectTransform rt = transform as RectTransform;
+            if (rt != null) rt.sizeDelta = _icon.sprite.rect.size;
+        }
+
         public void Show()
         {
-            if(!IsValid()) gameObject.SetSafeActive(true);
+            if (!IsValid()) gameObject.SetSafeActive(true);
         }
-        
+
         public override string GetQuestID()
         {
             return _data.id;

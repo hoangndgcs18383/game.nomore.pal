@@ -21,8 +21,6 @@ namespace NoMorePals
             List<SlotData> slots = new List<SlotData>
             {
                 new SlotData { id = Constants.TableQuestID },
-                new SlotData { id = "" },
-                new SlotData { id = "" }
             };
             SlotUIData uiData = new SlotUIData { slots = slots };
             await UIManager.Instance.ShowAndLoadScreenAsync<UIGameplay>(BaseScreenAddress.UIGAMEPLAY, uiData);

@@ -5,11 +5,22 @@ namespace NoMorePals
 {
     public abstract class DraggableItem : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
+        [SerializeField] private QuestTrigger dragIconWorld;
         private Vector3 _startPosition;
         private Transform _originalParent;
         private Canvas _parentCanvas;
         private RectTransform _rectTransform;
         private CanvasGroup _canvasGroup;
+        private QuestTrigger _dragIconDrag;
+
+        public virtual SlotData SlotData()
+        {
+            return new SlotData
+            {
+                id = gameObject.name,
+                sprite = GetComponentInChildren<UnityEngine.UI.Image>().sprite
+            };
+        }
 
         private void Awake()
         {
@@ -23,25 +34,28 @@ namespace NoMorePals
             if (_parentCanvas == null)
                 return;
 
-            Vector2 localPoint;
+            /*Vector2 localPoint;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _parentCanvas.transform as RectTransform,
                 eventData.position,
                 eventData.pressEventCamera,
                 out localPoint);
-            _rectTransform.localPosition = localPoint;
+            _rectTransform.localPosition = localPoint;*/
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 10f;
+            if (_dragIconDrag) _dragIconDrag.transform.position = Camera.main.ScreenToWorldPoint(mousePos);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             _canvasGroup.blocksRaycasts = true;
-            if (_originalParent != null)
+            _canvasGroup.alpha = 0f;
+            _dragIconDrag.Active();
+            /*if (_originalParent != null)
             {
                 transform.SetParent(_originalParent);
-            }
-
-            _rectTransform.anchoredPosition = Vector2.zero;
-            CheckRaycastWorldCurrentMouse();
+                _rectTransform.anchoredPosition = Vector2.zero;
+            }*/
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -50,6 +64,18 @@ namespace NoMorePals
             _originalParent = transform.parent;
             transform.SetParent(_parentCanvas.transform);
             _canvasGroup.blocksRaycasts = false;
+            _canvasGroup.alpha = 0.6f;
+            SpawnDragIconWorld();
+        }
+
+        public void SpawnDragIconWorld()
+        {
+            if (dragIconWorld != null)
+            {
+                _dragIconDrag = Instantiate(dragIconWorld, Camera.main.ScreenToWorldPoint(Input.mousePosition),
+                    Quaternion.identity);
+                _dragIconDrag.Initialize(SlotData());
+            }
         }
 
         public void CheckRaycastWorldCurrentMouse()
@@ -72,14 +98,14 @@ namespace NoMorePals
         {
             if (collider == null) return false;
             QuestTrigger trigger = collider.GetComponent<QuestTrigger>();
-            
+
             if (trigger != null && trigger.CanTrigger(questID))
             {
                 trigger.Active();
                 gameObject.SetActive(IsValid());
                 return true;
             }
-            
+
             return false;
         }
     }
