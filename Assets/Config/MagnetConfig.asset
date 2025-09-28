@@ -15,4 +15,4 @@ MonoBehaviour:
   magnetRange: 100
   magnetSpeedDefault: 10
   magnetSpeedMax: 20
-  stopOffset: 1
+  stopOffset: 1.2

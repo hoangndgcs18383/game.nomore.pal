@@ -1144,8 +1144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1384384a7689c245b02e3e1090ebfb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnetA: {fileID: 0}
-  magnetB: {fileID: 0}
+  magnetA: {fileID: 856952802}
+  magnetB: {fileID: 877450196}
   _stateGame: 0
 --- !u!4 &873555371
 Transform:
