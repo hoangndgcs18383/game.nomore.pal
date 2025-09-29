@@ -408,6 +408,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6746703164323158077, guid: cd0418d18c145154998f1f2349c821ff, type: 3}
+      propertyPath: targetHand
+      value: 
+      objectReference: {fileID: 4180588659871644555}
+    - target: {fileID: 8001474361760730012, guid: cd0418d18c145154998f1f2349c821ff, type: 3}
+      propertyPath: targetHand
+      value: 
+      objectReference: {fileID: 4180588659871644554}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -421,6 +429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 520497607516566749, guid: 03b94bf4e0da5bc47a031bbeeab446d4, type: 3}
+      propertyPath: targetHand
+      value: 
+      objectReference: {fileID: 1547602949}
     - target: {fileID: 1234516994770466123, guid: 03b94bf4e0da5bc47a031bbeeab446d4, type: 3}
       propertyPath: magnetContact
       value: 
@@ -433,6 +445,10 @@ PrefabInstance:
       propertyPath: targetHand
       value: 
       objectReference: {fileID: 545440714}
+    - target: {fileID: 6019382154600067802, guid: 03b94bf4e0da5bc47a031bbeeab446d4, type: 3}
+      propertyPath: targetHand
+      value: 
+      objectReference: {fileID: 1582551967}
     - target: {fileID: 6197200720959121602, guid: 03b94bf4e0da5bc47a031bbeeab446d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5
@@ -486,6 +502,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03b94bf4e0da5bc47a031bbeeab446d4, type: 3}
+--- !u!4 &4180588659871644554 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2745931802838714743, guid: 03b94bf4e0da5bc47a031bbeeab446d4, type: 3}
+  m_PrefabInstance: {fileID: 4180588659871644553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4180588659871644555 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3530803841108912704, guid: 03b94bf4e0da5bc47a031bbeeab446d4, type: 3}
+  m_PrefabInstance: {fileID: 4180588659871644553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ namespace NoMorePals
     {
         Idle,
         Walking,
+        Drag,
         Crying
     }
 
@@ -60,6 +61,11 @@ namespace NoMorePals
             isCurrentSelected = true;
         }
 
+        public void Drag()
+        {
+            currentState = MagnetState.Drag;
+        }
+
         public void Deselect()
         {
             isCurrentSelected = false;
@@ -78,6 +84,7 @@ namespace NoMorePals
             {
                 animationHandler.SetBool("IsWalk", currentState == MagnetState.Walking);
                 animationHandler.SetBool("IsCry", currentState == MagnetState.Crying);
+                animationHandler.SetBool("IsDrag", currentState == MagnetState.Drag);
             }
         }
 
@@ -102,7 +109,7 @@ namespace NoMorePals
                         magnetContact.position,
                         speedIncreaseRate * Time.deltaTime
                     );
-                    currentState = MagnetState.Walking;
+                    currentState = MagnetState.Idle;
                 }
             }
         }

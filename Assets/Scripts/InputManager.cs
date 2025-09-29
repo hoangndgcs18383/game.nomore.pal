@@ -73,7 +73,7 @@ namespace NoMorePals
                 Vector3 worldPoint = ray.origin;
                 _draggedObject.position =
                     new Vector3(worldPoint.x, worldPoint.y, currentSelectedBlock.transform.position.z);
-                
+                currentSelectedBlock.Drag();
             }
         }
 
