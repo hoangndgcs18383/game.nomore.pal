@@ -13,10 +13,10 @@ namespace SAGE.Framework.Extensions
         void Start()
         {
             DontDestroyOnLoad(gameObject);
-            StartCoroutine(PingRepeatedly());
+       //     StartCoroutine(PingRepeatedly());
         }
 
-        IEnumerator PingRepeatedly()
+        /*IEnumerator PingRepeatedly()
         {
             while (true) // Run indefinitely
             {
@@ -25,11 +25,12 @@ namespace SAGE.Framework.Extensions
                 // Wait for the specified interval before pinging again
                 yield return new WaitForSeconds(pingInterval);
             }
-        }
+        }*/
 
-        IEnumerator PingServer()
+        /*IEnumerator PingServer()
         {
-            Ping ping = new Ping(serverToPing);
+            
+            /*Ping ping = new Ping(serverToPing);
             float timeout = 5f; // Timeout in seconds
             float startTime = Time.time;
 
@@ -53,8 +54,8 @@ namespace SAGE.Framework.Extensions
             else
             {
                 Debug.Log("<color=red>Ping failed. No internet connection.</color>");
-            }
-        }
+            }#1#
+        }*/
 
         public void StopPing()
         {

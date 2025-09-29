@@ -153,7 +153,7 @@ namespace SAGE.Framework.Core
         private AudioSource PlaySound(AudioClip clip, float volume = 1f, float pitch = 1f, bool loop = false,
             bool ignoreTimeScale = false)
         {
-            if (PlayerPrefs.GetInt(PrefKey.EnableSound, 1) == 0)
+            if (PlayerPrefs.GetInt(PrefKey.EnableMusic, 1) == 0)
             {
                 return null;
             }

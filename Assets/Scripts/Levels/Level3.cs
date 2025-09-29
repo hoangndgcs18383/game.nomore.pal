@@ -8,7 +8,7 @@ namespace NoMorePals
 {
     public class Level3 : BaseQuest
     {
-        public override int LevelIndex => 2;
+        public override int LevelIndex => 3;
         
         private Dictionary<string, bool> _questTargets = new Dictionary<string, bool>
         {
@@ -23,7 +23,7 @@ namespace NoMorePals
 
         public override async UniTask StartLevel(MagnetBlock magnetA, MagnetBlock magnetB)
         {
-            Debug.Log("Level 2 Started");
+            Debug.Log("Level 3 Started");
             await UniTask.WaitUntil(() => !magnetA.IsMagnetizing() && !magnetB.IsMagnetizing());
             List<SlotData> slots = new List<SlotData>
             {

@@ -1,4 +1,6 @@
-
+using System.Collections.Generic;
+using NoMorePals;
+using SAGE.Framework.Core.Addressable;
 using UnityEngine.SceneManagement;
 
 namespace SAGE.Framework.Core
@@ -12,7 +14,8 @@ namespace SAGE.Framework.Core
     public class AppManager : BehaviorSingleton<AppManager>
     {
         [SerializeField] private int _targetFrameRate = 60;
-        
+        [SerializeField] private BlackBorderController _blackBorderController;
+
         public async void Start()
         {
             await DOInitialize().AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
@@ -27,8 +30,14 @@ namespace SAGE.Framework.Core
             Application.targetFrameRate = 300;
 #endif
             await UIManager.Instance.DoInitializeAsync();
-            await UniTask.WaitForSeconds(0.1f);
-            SceneManager.LoadScene("Level1");
+            AudioManager.Instance.PlayBackgroundMusic("Intro");
+#if !UNITY_EDITOR
+            await UIManager.Instance.ShowAndLoadScreenAsync<UIIntro>(BaseScreenAddress.UIINTRO);
+            await UniTask.WaitForSeconds(17f);
+#endif
+            await SceneManager.LoadSceneAsync("Level3");
+            await UniTask.WaitForSeconds(1f);
+            AudioManager.Instance.PlayBackgroundMusic("InGame");
         }
     }
 }

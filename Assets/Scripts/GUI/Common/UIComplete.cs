@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using SAGE.Framework.Core.Addressable;
 using SAGE.Framework.UI;
 using TMPro;
 using UnityEngine;
@@ -74,15 +75,26 @@ namespace NoMorePals
             seq.Join(txtTitle.transform.DOLocalMoveY(heightOffset, 0.5f).From().SetEase(Ease.OutBack));
             seq.Append(txtMessage.DOFade(targetAlpha, 0.5f));
             seq.Join(txtMessage.transform.DOLocalMoveY(heightOffset, 0.5f).From().SetEase(Ease.OutBack));
-            if (_data.win)
+            if (GameManager.Instance.GetLevelIndex() == 3 && _data.win)
             {
-                seq.Append(cgNextLevel.DOFade(targetAlpha, 0.5f));
-                seq.Join(cgNextLevel.transform.DOLocalMoveY(heightOffset, 0.5f).From().SetEase(Ease.OutBack));
+                seq.AppendCallback(() =>
+                {
+                    Hide();
+                    UIManager.Instance.ShowAndLoadScreenAsync<UIOuttro>(BaseScreenAddress.UIOUTTRO);
+                });
             }
             else
             {
-                seq.Append(cgRetry.DOFade(targetAlpha, 0.5f));
-                seq.Join(cgRetry.transform.DOLocalMoveY(heightOffset, 0.5f).From().SetEase(Ease.OutBack));
+                if (_data.win)
+                {
+                    seq.Append(cgNextLevel.DOFade(targetAlpha, 0.5f));
+                    seq.Join(cgNextLevel.transform.DOLocalMoveY(heightOffset, 0.5f).From().SetEase(Ease.OutBack));
+                }
+                else
+                {
+                    seq.Append(cgRetry.DOFade(targetAlpha, 0.5f));
+                    seq.Join(cgRetry.transform.DOLocalMoveY(heightOffset, 0.5f).From().SetEase(Ease.OutBack));
+                }
             }
 
             seq.Play();
@@ -96,7 +108,19 @@ namespace NoMorePals
                 {
                     cgRetry.blocksRaycasts = true;
                 }
+
+                if (GameManager.Instance.GetLevelIndex() == 3 && _data.win) WaitForQuit();
             });
+        }
+
+        public async void WaitForQuit()
+        {
+            await System.Threading.Tasks.Task.Delay(18000);
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID
+            Application.Quit();
+#elif UNITY_WEBGL
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+#endif
         }
 
         private void OnNextLevelButtonClicked()

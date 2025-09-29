@@ -38,4 +38,26 @@ MonoBehaviour:
       m_SubObjectGUID: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
+  - key: UIIntro
+    labels:
+    - BaseScreen
+    isAddressable: 1
+    asset: {fileID: 8497471636338310066, guid: 878ef71f089706441a6f5f141a12cc5e, type: 3}
+    reference:
+      m_AssetGUID: 878ef71f089706441a6f5f141a12cc5e
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - key: UIOuttro
+    labels:
+    - BaseScreen
+    isAddressable: 1
+    asset: {fileID: 8497471636338310066, guid: 62e138308edf41e48a984cbe7df36aca, type: 3}
+    reference:
+      m_AssetGUID: 62e138308edf41e48a984cbe7df36aca
+      m_SubObjectName: 
+      m_SubObjectGUID: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   Folder: 

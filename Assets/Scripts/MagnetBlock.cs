@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace NoMorePals
@@ -85,7 +87,6 @@ namespace NoMorePals
         private void Update()
         {
             HandleMovementMagnetize();
-            HandleMovementToTarget();
             HandleAnimation();
             HandlePush();
         }
@@ -98,25 +99,6 @@ namespace NoMorePals
                 animationHandler.SetBool("IsCry", currentState == MagnetState.Crying);
                 animationHandler.SetBool("IsDrag", currentState == MagnetState.Drag);
                 animationHandler.SetBool("IsHappyDance", currentState == MagnetState.IsHappyDance);
-            }
-        }
-
-        private void HandleMovementToTarget()
-        {
-            if (!targetTransform) return;
-
-            if (Vector3.Distance(transform.position, targetTransform.position) < config.stopOffset)
-            {
-                targetTransform = null;
-                currentState = MagnetState.Idle;
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    targetTransform.position,
-                    speedIncreaseRate * Time.deltaTime);
-                currentState = MagnetState.Walking;
             }
         }
 
@@ -173,23 +155,72 @@ namespace NoMorePals
             }
         }
 
-        public void TryToFindDoor()
+        public bool TryToFindDoor()
         {
-            int layer = LayerMask.GetMask("Door") | LayerMask.GetMask("Quest");
-            RaycastHit2D[] hit2D = Physics2D.RaycastAll(transform.position, Vector2.zero, Mathf.Infinity, layer);
+            /*List<DoorTrigger> allDoors = new List<DoorTrigger>(FindObjectsOfType<DoorTrigger>());
+            if (allDoors.Count == 0) return false;
+            Vector3 closestDoor = allDoors
+                .OrderBy(door => Vector3.Distance(transform.position, door.transform.position))
+                .First().transform.position;
 
-            if (hit2D.Length > 0)
+            Vector3 dirToClosestDoor = (closestDoor - transform.position).normalized;
+            int layer = LayerMask.GetMask("Door") | LayerMask.GetMask("Quest");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dirToClosestDoor, Mathf.Infinity, layer);
+
+            if (hit.collider != null)
             {
-                foreach (RaycastHit2D hit in hit2D)
+                DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
+                if (door != null)
                 {
-                    DoorComponent door = hit.collider.GetComponent<DoorComponent>();
+                    canPush = false;
+                    isCurrentSelected = false;
+                    targetTransform = door.transform;
+                    currentState = MagnetState.Walking;
+                    MoveToDoor(door);
+                    return true;
+                }
+            }*/
+
+            for (int i = 0; i < 360; i++)
+            {
+                float angle = i * 1;
+                Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+                int layer = LayerMask.GetMask("Door") | LayerMask.GetMask("Quest");
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 15, layer);
+
+                if (hit.collider != null)
+                {
+                    DoorTrigger door = hit.collider.GetComponent<DoorTrigger>();
                     if (door != null)
                     {
+                        canPush = false;
+                        isCurrentSelected = false;
                         targetTransform = door.transform;
-                        return;
+                        currentState = MagnetState.Walking;
+                        //Debug.Log("CheckCanSeeContact " + CheckCanSeeContact());
+                        MoveToDoor(door);
+                        return true;
                     }
                 }
             }
+
+            return false;
+        }
+
+        public bool CheckCanSeeContact()
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, magnetContact.position - transform.position,
+                Vector3.Distance(transform.position, magnetContact.position), LayerMask.GetMask("Block"));
+
+            return hit.collider != null;
+        }
+
+        public void MoveToDoor(DoorTrigger doorTrigger)
+        {
+            Sequence seq = DOTween.Sequence();
+            bool isDoAnimation = false;
+            seq.Append(transform.DOMove(targetTransform.position, 1f));
+            seq.AppendCallback(() => { doorTrigger.doorComponent.DoAnimation(this); });
         }
 
         public void SetPullPosition(Vector3 dir)
@@ -207,6 +238,45 @@ namespace NoMorePals
             {
                 isMagnetizing = true;
             }
+        }
+
+        public IEnumerator ManualMove()
+        {
+            while (true)
+            {
+                speedIncreaseRate += Time.deltaTime;
+                speedIncreaseRate = Mathf.Min(speedIncreaseRate, config.magnetSpeedMax);
+
+                if (Vector3.Distance(transform.position, magnetContact.position) < config.stopOffset)
+                {
+                    isMagnetizing = false;
+                    Deselect();
+                    speedIncreaseRate = config.magnetSpeedDefault;
+                    currentState = MagnetState.IsHappyDance;
+                    GameManager.Instance.ChangeStateGame(StateGame.Lose);
+                    yield break;
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(
+                        transform.position,
+                        magnetContact.position,
+                        speedIncreaseRate * Time.deltaTime
+                    );
+                }
+
+                yield return null;
+            }
+        }
+
+        public void SetPushable(bool canPush)
+        {
+            this.canPush = canPush;
+        }
+
+        public void SetState(MagnetState state)
+        {
+            currentState = state;
         }
 
         public void OnGameStateChanged(StateGame newState)
@@ -251,9 +321,15 @@ namespace NoMorePals
 
         private void HandleCompleteLevel3()
         {
-            TryToFindDoor();
+            if (!GameManager.Instance.IsWin())
+            {
+                StartCoroutine(ManualMove());
+            }
+            else
+            {
+                GameManager.Instance.RandomTryFindDoor();
+            }
         }
-
 
         public async void WaitForCompleteLevel()
         {

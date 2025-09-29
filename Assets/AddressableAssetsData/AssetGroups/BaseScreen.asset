@@ -15,6 +15,18 @@ MonoBehaviour:
   m_GroupName: BaseScreen
   m_GUID: 7ab23834afbe1eb4db762e845b2500b3
   m_SerializeEntries:
+  - m_GUID: 62e138308edf41e48a984cbe7df36aca
+    m_Address: UIOuttro
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BaseScreen
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 878ef71f089706441a6f5f141a12cc5e
+    m_Address: UIIntro
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BaseScreen
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3c2db6c51c485c409215bc899e79767
     m_Address: UIGameplay
     m_ReadOnly: 0
@@ -32,3 +44,4 @@ MonoBehaviour:
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: 021de4f078d58ca43ac17574083e311d, type: 2}
+    - {fileID: 11400000, guid: 636fb80fe97b845439d9396e0ac47b23, type: 2}

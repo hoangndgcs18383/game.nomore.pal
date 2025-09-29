@@ -12,6 +12,7 @@ namespace NoMorePals
         private Canvas _parentCanvas;
         private RectTransform _rectTransform;
         private QuestTrigger _dragIconDrag;
+        protected bool _isDragging;
 
         protected CanvasGroup _canvasGroup;
         protected SlotData _data;
@@ -23,6 +24,15 @@ namespace NoMorePals
             _canvasGroup = GetComponent<CanvasGroup>();
             _parentCanvas = GetComponentInParent<Canvas>();
             _main = Camera.main;
+            GameManager.Instance.OnStateGameChanged += OnGameStateChanged;
+        }
+
+        private void OnGameStateChanged(StateGame state)
+        {
+            if (state == StateGame.OutOfTurns)
+            {
+                _canvasGroup.blocksRaycasts = false;
+            }
         }
 
         public virtual void SetData(SlotData data)
@@ -36,6 +46,7 @@ namespace NoMorePals
             if (_parentCanvas == null)
                 return;
 
+            _isDragging = true;
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = 10f;
             if (_dragIconDrag)
@@ -51,6 +62,7 @@ namespace NoMorePals
         {
             _canvasGroup.blocksRaycasts = true;
             _canvasGroup.alpha = 1;
+            _isDragging = false;
             Ray ray = _main.ScreenPointToRay(Input.mousePosition);
             if (Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("PointUp")))
             {
@@ -70,7 +82,7 @@ namespace NoMorePals
             _originalParent = transform.parent;
             _canvasGroup.blocksRaycasts = false;
             _canvasGroup.alpha = 0.6f;
-
+            _isDragging = true;
 
             SpawnDragIconWorld();
             //transform.SetParent(_parentCanvas.transform);

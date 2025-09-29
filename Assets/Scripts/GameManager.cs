@@ -26,6 +26,7 @@ namespace NoMorePals
 
         private ILevel ILevel;
         private int _turns = 0;
+        private bool _isRandomTryFindDoor = false;
 
         public bool IsPlaying() => _stateGame == StateGame.Playing;
         public bool IsOutOfTurns() => _stateGame == StateGame.OutOfTurns;
@@ -37,6 +38,7 @@ namespace NoMorePals
         {
             ILevel = GetComponent<ILevel>();
             _turns = ILevel.GetLevelTurns();
+            _isRandomTryFindDoor = false;
             await ILevel.StartLevel(magnetA, magnetB);
             OnTurnChanged?.Invoke(_turns, ILevel);
             _stateGame = StateGame.Playing;
@@ -120,5 +122,57 @@ namespace NoMorePals
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+
+        public void RandomTryFindDoor()
+        {
+            if (_isRandomTryFindDoor) return;
+
+            _isRandomTryFindDoor = true;
+            
+            if (magnetA.TryToFindDoor())
+            {
+                magnetB.SetPushable(false);
+                magnetB.SetState(MagnetState.Idle);
+                return;
+            }
+
+            if (magnetB.TryToFindDoor())
+            {
+                magnetA.SetPushable(false);
+                magnetA.SetState(MagnetState.Idle);
+                return;
+            }
+            
+            int random = UnityEngine.Random.Range(0, 100);
+
+            if (random < 50)
+            {
+                magnetA.TryToFindDoor();
+                magnetB.SetPushable(false);
+                magnetB.SetState(MagnetState.Idle);
+            }
+            else
+            {
+                magnetA.SetPushable(false);
+                magnetA.SetState(MagnetState.Idle);
+                magnetB.TryToFindDoor();
+            }
+        }
+
+        public void IECompleteLevel3(bool isWin = true)
+        {
+            if (isWin)
+            {
+                magnetA.SetState(MagnetState.Crying);
+                magnetB.SetState(MagnetState.Crying);
+                magnetB.WaitForCompleteLevel();
+            }
+            else
+            {
+                StartCoroutine(magnetA.ManualMove());
+                StartCoroutine(magnetB.ManualMove());
+            }
+        }
+        
     }
 }

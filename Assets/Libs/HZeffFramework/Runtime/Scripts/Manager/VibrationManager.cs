@@ -19,7 +19,9 @@ namespace SAGE.Framework.Core
         {
             if (PlayerPrefs.GetInt(VibrationKey, 1) == 1)
             {
+#if UNITY_ANDROID && UNITY_IOS
                 Handheld.Vibrate();
+#endif
             }
         }
         

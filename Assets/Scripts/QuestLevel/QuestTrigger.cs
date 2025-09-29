@@ -15,12 +15,14 @@ namespace NoMorePals
         private bool _triggered;
         protected SlotData _slotData;
         private Vector3 _initialPosition;
+        protected bool _isDragging;
 
         public virtual void Initialize(SlotData slotData)
         {
             _slotData = slotData;
             icon.sprite = slotData.sprite;
             _initialPosition = transform.position;
+            _isDragging = true;
             gameObject.GetOrAddComponent<PolygonCollider2D>();
         }
 
@@ -45,6 +47,7 @@ namespace NoMorePals
 
         public virtual void Enter(MagnetBlock block)
         {
+            _isDragging = false;
             block.gameObject.SetActive(false);
             if(animtion) animtion.gameObject.SetActive(true);
         }

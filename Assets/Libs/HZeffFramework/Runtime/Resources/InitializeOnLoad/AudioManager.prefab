@@ -105,15 +105,15 @@ MonoBehaviour:
       ignoreTimeScale: 0
   - groupName: BackgroundMusic
     clips:
-    - soundKey: MainMenu
-      clip: {fileID: 8300000, guid: fe5e40dfdb2634c48af5e234436ed0fe, type: 3}
-      volume: 1
-      pitch: 1
+    - soundKey: Intro
+      clip: {fileID: 8300000, guid: f7e22c1d08283784abf32de236d78996, type: 3}
+      volume: 0
+      pitch: 0
       loop: 1
       ignoreTimeScale: 0
-    - soundKey: Gameplay
-      clip: {fileID: 8300000, guid: 6c52a47d44b3c894bb0707fbaebf1d3c, type: 3}
-      volume: 1
-      pitch: 1
+    - soundKey: InGame
+      clip: {fileID: 8300000, guid: ffe6d16d426076d46924de0b46953282, type: 3}
+      volume: 0
+      pitch: 0
       loop: 1
       ignoreTimeScale: 0
