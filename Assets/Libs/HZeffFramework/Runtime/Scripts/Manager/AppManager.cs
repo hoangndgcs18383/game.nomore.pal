@@ -28,7 +28,7 @@ namespace SAGE.Framework.Core
 #endif
             await UIManager.Instance.DoInitializeAsync();
             await UniTask.WaitForSeconds(0.1f);
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene("Level1");
         }
     }
 }
