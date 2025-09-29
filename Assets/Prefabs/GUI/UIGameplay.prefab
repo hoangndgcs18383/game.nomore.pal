@@ -773,9 +773,9 @@ MonoBehaviour:
   - id: PC
     sprite: {fileID: -1242981233095635938, guid: 65c788e8ee1c9d44d8de433d3f77e6ab, type: 3}
     questTrigger: {fileID: -2998276265264700169, guid: be5fba5e10673dc42844338bc0aeb6db, type: 3}
-  - id: Ruler
+  - id: UseBarrier
     sprite: {fileID: 5516141171378728941, guid: ef89608f159c90f4fb2d4fb1ecc52c2f, type: 3}
-    questTrigger: {fileID: 0}
+    questTrigger: {fileID: 43830861748852608, guid: 638e1420d24f2284288bcc67328fb6e3, type: 3}
   - id: Clock
     sprite: {fileID: -81444051479598002, guid: 51585d7cc928c5c4ab3ffdbea3b1acfa, type: 3}
     questTrigger: {fileID: 0}
@@ -785,6 +785,7 @@ MonoBehaviour:
   slotPrefab: {fileID: 6943792507933613697, guid: 4ff0191d4342d004ea375bc0f0beaa4e, type: 3}
   slotsParent: {fileID: 8433494253018001482}
   playButton: {fileID: 6155658522417758222}
+  loadingButton: {fileID: 582665252571613290}
 --- !u!1 &7032791351544251362
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,12 +15,12 @@ namespace NoMorePals
         private void Update()
         {
             //if (!magnetBlock.IsCurrentSelected()) return;
-            if (targetHand.gameObject.activeInHierarchy)
+            if (targetHand.gameObject.activeInHierarchy && !magnetBlock.IsPushing())
             {
                 MoveToPointBetween(rootHand.position, targetHand.position,
                     !magnetBlock.IsCurrentSelected() ? percentStop : percentMove);
             }
-            else
+            else if(!targetHand.gameObject.activeInHierarchy || magnetBlock.IsPushing())
             {
                 Vector3 rootPos = rootHand.position;
                 MoveToPointBetween(transform.position, rootPos,

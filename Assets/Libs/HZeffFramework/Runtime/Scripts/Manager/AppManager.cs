@@ -1,4 +1,4 @@
-using NoMorePals;
+
 using UnityEngine.SceneManagement;
 
 namespace SAGE.Framework.Core
@@ -12,28 +12,7 @@ namespace SAGE.Framework.Core
     public class AppManager : BehaviorSingleton<AppManager>
     {
         [SerializeField] private int _targetFrameRate = 60;
-        //[SerializeField] private UILoading _uiLoading;
-
-        private float _fillAmount = 0f;
-        private bool _isLoading = false;
-
-        public bool IsLoading
-        {
-            get => _isLoading;
-            set
-            {
-                _isLoading = value;
-                if (_isLoading)
-                {
-                    //_uiLoading.Show();
-                }
-                else
-                {
-                    //_uiLoading.Hide();
-                }
-            }
-        }
-
+        
         public async void Start()
         {
             await DOInitialize().AttachExternalCancellation(this.GetCancellationTokenOnDestroy());
@@ -47,77 +26,9 @@ namespace SAGE.Framework.Core
 #else
             Application.targetFrameRate = 300;
 #endif
-            //DeviceBasedPipelineManager.Instance.ApplyOptimalPipeline();
-            IsLoading = true;
             await UIManager.Instance.DoInitializeAsync();
-            //await ModelManager.Instance.InitializeAsync();
-            //await SDKHandler.Instance.LoginAsync();
-            _fillAmount = 0.2f;
-            //await _uiLoading.SetProgressTweenAsync(0.2f);
-#if !UNITY_EDITOR
-            await ShowOpenAppAsync();
-#endif
-            //await _uiLoading.SetProgressTweenAsync(1f);
-            await UIManager.Instance.FadeInLoadingAsync();
-            //AudioManager.Instance.PlayBackgroundMusic(SoundKey.MainMenu);
-            //await UIManager.Instance.ShowAndLoadScreenAsync<UIMainMenu>(BaseScreenAddress.UIMAINMENU);
-            IsLoading = false;
             await UniTask.WaitForSeconds(0.1f);
-            SceneManager.LoadScene("Level1");
-            //SDKHandler.Instance.ShowBannerAdAsync();
-        }
-
-
-        public async UniTask ShowOpenAppAsync()
-        {
-#if PLAY_ADS
-            float delay = 0;
-            if (PlayAdSupport.IsLoggeds && !PlayAdSupport.GetUser().BuyNoAds)
-            {
-                delay = PlayAdSupport.GetUser().GetConfig<int>(GameConfigName.DelayLoading);
-                float fill = 0;
-                float cachedDelay = delay;
-
-                while (delay > 0)
-                {
-                    delay -= Time.deltaTime;
-                    fill = Mathf.Clamp01((cachedDelay - delay) / cachedDelay);
-                    if (PlayAdSupport.IsAppOpenAdAvailable()) break;
-
-                    _uiLoading.SetProgressTween(_fillAmount + fill);
-                    await UniTask.Yield();
-                }
-            }
-            
-            if (!PlayAdSupport.GetUser().BuyNoAds) PlayAdSupport.ShowOpenAppAd();
-#endif
-        }
-
-        public async UniTask LoadingScreen<T>(string baseScreen, float duration = 3f) where T : BaseScreen
-        {
-            UIManager.Instance.HideAllPreviousScreens();
-            IsLoading = true;
-            //SDKHandler.Instance.ShowBannerAdAsync(AdBannerSize.MediumRectangle);
-            //_uiLoading.SetProgress(0);
-            //await _uiLoading.SetProgressTweenAsync(0.1f, 0.15f);
-            //Debug.Log($"Before Total Memory: {GC.GetTotalMemory(false) / 1024 / 1024}MB");
-            //Debug.Log($"Before Texture Memory: {Profiler.GetTotalAllocatedMemoryLong() / 1024 / 1024}MB");
-            //GC.Collect();
-            await UniTask.WaitForSeconds(0.15f);
-            //await Resources.UnloadUnusedAssets();
-            //Debug.Log($"After Total Memory: {GC.GetTotalMemory(false) / 1024 / 1024}MB");
-            //Debug.Log($"After Texture Memory: {Profiler.GetTotalAllocatedMemoryLong() / 1024 / 1024}MB");
-            //await _uiLoading.SetProgressTweenAsync(1f, duration);
-            await UIManager.Instance.FadeInLoadingAsync();
-            IsLoading = false;
-            //SDKHandler.Instance.ShowBannerAdAsync();
-            await UIManager.Instance.ShowAndLoadScreenAsync<T>(baseScreen);
-        }
-
-
-        private void OnApplicationQuit()
-        {
-            //UserProfileService.Sync();
+            SceneManager.LoadScene("Level2");
         }
     }
 }

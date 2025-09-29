@@ -1,5 +1,4 @@
 using System;
-using Cysharp.Threading.Tasks;
 using SAGE.Framework.Core.Addressable;
 using SAGE.Framework.UI;
 using UnityEngine;
@@ -18,7 +17,7 @@ namespace NoMorePals
 
     public class GameManager : PresSingleton<GameManager>
     {
-        public event Action<int, int> OnTurnComplete;
+        public event Action<int, ILevel> OnTurnChanged;
         public event Action<StateGame> OnStateGameChanged;
 
         [SerializeField] private MagnetBlock magnetA;
@@ -31,14 +30,15 @@ namespace NoMorePals
         public bool IsPlaying() => _stateGame == StateGame.Playing;
         public bool IsOutOfTurns() => _stateGame == StateGame.OutOfTurns;
         public bool CanMagnetize() => IsPlaying() || IsOutOfTurns();
-        public bool IsWin() =>  ILevel.AreAllQuestsComplete();
-        
+        public bool IsWin() => ILevel.AreAllQuestsComplete();
+        public int GetLevelIndex() => ILevel.LevelIndex;
+
         private async void Start()
         {
             ILevel = GetComponent<ILevel>();
-            _turns = 0;
+            _turns = ILevel.GetLevelTurns();
             await ILevel.StartLevel(magnetA, magnetB);
-            OnTurnComplete?.Invoke(_turns, ILevel.GetLevelTurns());
+            OnTurnChanged?.Invoke(_turns, ILevel);
             _stateGame = StateGame.Playing;
         }
 
@@ -49,12 +49,12 @@ namespace NoMorePals
 
         public void CompleteTurn()
         {
-            _turns++;
-            OnTurnComplete?.Invoke(_turns, ILevel.GetLevelTurns());
+            _turns--;
+            OnTurnChanged?.Invoke(_turns, ILevel);
 
             Debug.Log($"Turn {_turns}/{ILevel.GetLevelTurns()} completed.");
 
-            if (_turns >= ILevel.GetLevelTurns())
+            if (_turns <= 0)
             {
                 ChangeStateGame(StateGame.OutOfTurns);
             }
@@ -72,6 +72,7 @@ namespace NoMorePals
 
         public void ChangeStateGame(StateGame newState)
         {
+            if (_stateGame == newState) return;
             _stateGame = newState;
             OnStateGameChanged?.Invoke(_stateGame);
 
@@ -99,7 +100,7 @@ namespace NoMorePals
             };
             await UIManager.Instance.ShowAndLoadScreenAsync<UIComplete>(BaseScreenAddress.UICOMPLETE, data);
         }
-        
+
         public async void ShowLose()
         {
             UICompleteData loseData = new UICompleteData

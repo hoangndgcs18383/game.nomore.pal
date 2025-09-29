@@ -9,5 +9,6 @@ namespace NoMorePals
         public float magnetSpeedDefault = 10f;
         public float magnetSpeedMax = 20f;
         public float stopOffset = 1f;
+        public float pushForce = 5f;
     }
 }

@@ -9,19 +9,19 @@ namespace NoMorePals
 
         private void OnEnable()
         {
-            GameManager.Instance.OnTurnComplete += UpdateTurnText;
+            GameManager.Instance.OnTurnChanged += UpdateTurnText;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.OnTurnComplete -= UpdateTurnText;
+            GameManager.Instance.OnTurnChanged -= UpdateTurnText;
         }
 
-        private void UpdateTurnText(int currentTurn, int totalTurns)
+        private void UpdateTurnText(int currentTurn, ILevel totalTurns)
         {
-            string tag = currentTurn < totalTurns ? "<color=red>" : "<color=green>";
+            string tag = currentTurn <= 0 ? "<color=red>" : "<color=white>";
             
-            turnText.text = $"Action: {tag}{currentTurn}</color>/{totalTurns}";
+            turnText.text = $"Action: {tag}{currentTurn}</color>/{totalTurns.GetLevelTurns()}";
         }
     }
 }

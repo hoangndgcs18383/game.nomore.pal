@@ -6,16 +6,15 @@ using UnityEngine;
 
 namespace NoMorePals
 {
-    public class Level1 : BaseQuest
+    public class Level3 : BaseQuest
     {
-        public override int LevelIndex => 1;
+        public override int LevelIndex => 2;
         
         private Dictionary<string, bool> _questTargets = new Dictionary<string, bool>
         {
-            { Constants.TableQuestID, false },
-            { Constants.GoToPcScene, false }
+            { Constants.UseBarrier, false },
         };
-        
+
         protected override Dictionary<string, bool> QuestTargets
         {
             get => _questTargets;
@@ -24,11 +23,12 @@ namespace NoMorePals
 
         public override async UniTask StartLevel(MagnetBlock magnetA, MagnetBlock magnetB)
         {
-            Debug.Log("Level 1 Started");
+            Debug.Log("Level 2 Started");
             await UniTask.WaitUntil(() => !magnetA.IsMagnetizing() && !magnetB.IsMagnetizing());
             List<SlotData> slots = new List<SlotData>
             {
-                new SlotData { id = Constants.TableQuestID, count = 1 },
+                new SlotData { id = Constants.TableQuestID, count = 0 },
+                new SlotData { id = Constants.UseBarrier, count = 1 },
             };
             SlotUIData uiData = new SlotUIData { slots = slots };
             await UIManager.Instance.ShowAndLoadScreenAsync<UIGameplay>(BaseScreenAddress.UIGAMEPLAY, uiData);

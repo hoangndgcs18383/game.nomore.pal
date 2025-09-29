@@ -26,6 +26,7 @@ namespace NoMorePals
         [SerializeField] private Slot slotPrefab;
         [SerializeField] private Transform slotsParent;
         [SerializeField] private Button playButton;
+        [SerializeField] private Button loadingButton;
 
         private List<Slot> _slots = new List<Slot>();
         private SlotUIData _uiData;
@@ -34,11 +35,17 @@ namespace NoMorePals
         {
             base.Initialize();
             playButton.onClick.AddListener(OnPlayButtonClicked);
+            loadingButton.onClick.AddListener(OnResetButtonClicked);
         }
 
-        public void OnPlayButtonClicked()
+        private void OnPlayButtonClicked()
         {
             GameManager.Instance.ValidateGameplay();
+        }
+
+        private void OnResetButtonClicked()
+        {
+            GameManager.Instance.ResetGame();
         }
 
         public override void SetData(IUIData data = null)

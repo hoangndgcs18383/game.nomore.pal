@@ -4,9 +4,10 @@ namespace NoMorePals
 {
     public class InputManager : PresSingleton<InputManager>
     {
+        [SerializeField] private LayerMask blockLayer;
         [SerializeField] private LayerMask questLayer;
 
-        private MagnetBlock currentSelectedBlock;
+        [SerializeField] private MagnetBlock currentSelectedBlock;
         private Camera _main;
         private bool _isDragging = false;
         private bool _isMagnet = true;
@@ -57,7 +58,6 @@ namespace NoMorePals
                         currentSelectedBlock.TryMagnetToContact();
                         GameManager.Instance.CompleteTurn();
                     }
-                    
                 }
 
                 currentSelectedBlock = null;
@@ -82,20 +82,16 @@ namespace NoMorePals
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = _main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity))
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, blockLayer);
+                if (hit.collider != null)
                 {
-                    RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-                    if (hit.collider != null)
+                    MagnetBlock block = hit.collider.GetComponentInParent<MagnetBlock>();
+                    if (block != null)
                     {
-                        MagnetBlock block = hit.collider.GetComponentInParent<MagnetBlock>();
-                        if (block != null)
-                        {
-                            currentSelectedBlock = block;
-                            _draggedObject = currentSelectedBlock.transform;
-                            currentSelectedBlock.Selected();
-                            _isDragging = true;
-                        }
+                        currentSelectedBlock = block;
+                        _draggedObject = currentSelectedBlock.transform;
+                        currentSelectedBlock.Selected();
+                        _isDragging = true;
                     }
                 }
             }

@@ -59,6 +59,7 @@ namespace SAGE.Framework.Core
                 }
             }
 
+            Debug.Log($"<b><color=green>[Addressable]</color></b> Start loading: {label}");
             AsyncOperationHandle downloadHandle = Addressables.DownloadDependenciesAsync(label, false);
             float progress = 0;
             AsyncOperationHandle<IList<GameObject>> assets = Addressables.LoadAssetsAsync<GameObject>(label, null);

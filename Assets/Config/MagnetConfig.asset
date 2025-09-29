@@ -16,3 +16,4 @@ MonoBehaviour:
   magnetSpeedDefault: 20
   magnetSpeedMax: 20
   stopOffset: 1.5
+  pushForce: 2
