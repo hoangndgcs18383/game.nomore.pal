@@ -10,6 +10,21 @@ namespace NoMorePals
 
         private void Start()
         {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            if (arg0.name == "Level3")
+            {
+                doorComponentA.gameObject.SetActive(true);
+                doorComponentB.gameObject.SetActive(true);
+            }
+            else
+            {
+                doorComponentA.gameObject.SetActive(false);
+                doorComponentB.gameObject.SetActive(false);
+            }
         }
     }
 }

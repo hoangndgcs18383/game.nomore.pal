@@ -79,7 +79,7 @@ MonoBehaviour:
       - m_Id: 8251b108646f74a44a0c6ba916ddaf9b
         m_Value: 'ServerData/[BuildTarget]'
       - m_Id: f8b9a4c860e4d8b42a3e1a9784a23b67
-        m_Value: <undefined>
+        m_Value: https://hoang2607.itch.io/tesstt/ServerData/WebGL
     m_ProfileEntryNames:
     - m_Id: 50c50fbcc323ab34f87c357a9c38b5ce
       m_Name: Local.LoadPath
