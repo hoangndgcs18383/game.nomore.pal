@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7267665877208964193}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: HandRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5910061440190002286}
   - component: {fileID: 623734836765562127}
   - component: {fileID: 8579010642287624050}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Hand2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 7185113096782794455}
   - component: {fileID: 3217147542379645004}
   - component: {fileID: 3734242531683375945}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 2745931802838714743}
   - component: {fileID: 9209892280544777093}
   - component: {fileID: 6019382154600067802}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: HandR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2999205729013707247}
   - component: {fileID: 7807137358286345743}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: FootL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5026587351460888029}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: HandLRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8777041028162459607}
   - component: {fileID: 2805808800651403647}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: FootR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8688345533993997427}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: HandRRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 3136023350236288743}
   - component: {fileID: 4497167026679950694}
   - component: {fileID: 8104964743519871928}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Hand1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 3530803841108912704}
   - component: {fileID: 4791363433858752339}
   - component: {fileID: 520497607516566749}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: HandL
   m_TagString: Untagged
   m_Icon: {fileID: 0}

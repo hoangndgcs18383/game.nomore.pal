@@ -19,7 +19,6 @@ namespace NoMorePals
             allMagnetBlocks = new List<MagnetBlock>(FindObjectsOfType<MagnetBlock>());
             canRotate = GameManager.Instance.GetLevelIndex() == 3;
             _isDragging = true;
-            
         }
 
         public override void Drag()
@@ -62,7 +61,8 @@ namespace NoMorePals
 
         private void OnTriggerStay2D(Collider2D col)
         {
-            if (col.gameObject.CompareTag("Player") && col.gameObject.layer == LayerMask.NameToLayer("Block"))
+            if (col.gameObject.CompareTag("Player") && col.gameObject.layer == LayerMask.NameToLayer("BlockA") ||
+                col.gameObject.layer == LayerMask.NameToLayer("BlockB"))
             {
                 Rigidbody2D rb = col.attachedRigidbody;
                 if (rb != null)

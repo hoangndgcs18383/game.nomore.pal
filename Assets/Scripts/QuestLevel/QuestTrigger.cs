@@ -43,11 +43,11 @@ namespace NoMorePals
         {
             // triggerEffect.SetActive(true);
             _triggered = true;
+            _isDragging = false;
         }
 
         public virtual void Enter(MagnetBlock block)
         {
-            _isDragging = false;
             block.gameObject.SetActive(false);
             if(animtion) animtion.gameObject.SetActive(true);
         }

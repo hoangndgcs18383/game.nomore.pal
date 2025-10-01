@@ -16,6 +16,7 @@ namespace NoMorePals
         private void Start()
         {
             _main = Camera.main;
+            blockLayer = LayerMask.GetMask("BlockA", "BlockB"); 
         }
 
         private void Update()

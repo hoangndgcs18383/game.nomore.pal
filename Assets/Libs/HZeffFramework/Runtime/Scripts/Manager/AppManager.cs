@@ -35,7 +35,7 @@ namespace SAGE.Framework.Core
             await UIManager.Instance.ShowAndLoadScreenAsync<UIIntro>(BaseScreenAddress.UIINTRO);
             await UniTask.WaitForSeconds(17f);
 #endif
-            await SceneManager.LoadSceneAsync("Level1");
+            await SceneManager.LoadSceneAsync("Level3");
             await UniTask.WaitForSeconds(1f);
             AudioManager.Instance.PlayBackgroundMusic("InGame");
         }

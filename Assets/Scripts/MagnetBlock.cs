@@ -209,10 +209,20 @@ namespace NoMorePals
 
         public bool CheckCanSeeContact()
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, magnetContact.position - transform.position,
-                Vector3.Distance(transform.position, magnetContact.position), LayerMask.GetMask("Block"));
+            Vector3 dirToContact = (magnetContact.position - transform.position).normalized;
+            int magnetLayer = gameObject.layer;
+            int layerBlock = magnetLayer == LayerMask.NameToLayer("BlockA")
+                ? LayerMask.NameToLayer("BlockB")
+                : LayerMask.NameToLayer("BlockA");
+            int layer = LayerMask.GetMask(LayerMask.LayerToName(layerBlock), "Quest");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dirToContact,
+                Vector3.Distance(transform.position, magnetContact.position), layer);
 
-            return hit.collider != null;
+            MagnetBlock block = hit.collider?.GetComponentInParent<MagnetBlock>();
+
+            Debug.Log(block != null);
+            
+            return block != null;
         }
 
         public void MoveToDoor(DoorTrigger doorTrigger)

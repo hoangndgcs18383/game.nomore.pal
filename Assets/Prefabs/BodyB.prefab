@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8211375685364115084}
   - component: {fileID: 2694040260162280496}
   - component: {fileID: 6621318323963075452}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 8326872878970348335}
   - component: {fileID: 4041424280994604270}
   - component: {fileID: 1958732816712129679}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hand1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511935238022770205}
   - component: {fileID: 7368905737687785070}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: FootR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 2996516759318955352}
   - component: {fileID: 8485893717308346083}
   - component: {fileID: 3049097950228041401}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Hand2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9008933960460147064}
   - component: {fileID: 151454728245296545}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: FootL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 795388166916649715}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: HandRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,7 +710,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4522262606894758624}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: HandLRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 7011144759373759314}
   - component: {fileID: 2396430100818065998}
   - component: {fileID: 6746703164323158077}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: HandL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 7767048687772961109}
   - component: {fileID: 3116174239115706031}
   - component: {fileID: 8001474361760730012}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: HandR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2271442831030062307}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: HandRRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
